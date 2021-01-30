@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*--------Mixin--------*/
 .section__template__listPersonGrid .item__grid--description, .section__template__listPersonSlide .item__slide--description {
   transition: all 0.3s !important;
@@ -120,7 +121,7 @@
 }
 @media (max-width: 768px) {
   .section__template__listPersonGrid .item__grid--top, .section__template__listPersonSlide .item__slide--top {
-    height: 250px;
+    height: 300px;
   }
 }
 @media (max-width: 480px) {
@@ -205,6 +206,97 @@
   text-align: center;
 }
 
+.section__select__box {
+  position: relative;
+  z-index: 999;
+  display: block;
+  max-width: 260px;
+  width: 100%;
+  text-align: left;
+  height: 70px;
+  color: #4a5c66;
+}
+@media (max-width: 480px) {
+  .section__select__box {
+    max-width: 100%;
+  }
+}
+.section__select__box__current {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+.section__select__box__current:focus + .section__select__box__list {
+  opacity: 1;
+  animation-name: none;
+}
+.section__select__box__current:focus + .section__select__box__list .section__select__box__option {
+  cursor: pointer;
+}
+.section__select__box__current:focus .section__select__box__icon {
+  transform: translateY(-50%) rotate(180deg);
+}
+.section__select__box__icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 15px;
+  opacity: 0.8;
+  transition: 0.2s ease;
+}
+.section__select__box__value {
+  display: flex;
+}
+.section__select__box__input {
+  display: none;
+}
+.section__select__box__input:checked + .section__select__box__input--text {
+  display: block;
+}
+.section__select__box__input--text {
+  display: none;
+  width: 100%;
+  margin: 0;
+  padding: 0 15px;
+  background-color: #fff;
+  height: 70px;
+  line-height: 70px;
+}
+.section__select__box__list {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  opacity: 0;
+  animation-name: HideList;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: step-start;
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+}
+.section__select__box__option {
+  display: block;
+  padding: 15px;
+  background-color: #fff;
+  border-top: 1px solid rgba(74, 92, 102, 0.3);
+  cursor: pointer;
+}
+.section__select__box__option:hover, .section__select__box__option:focus {
+  color: #546c84;
+  background-color: #fbfbfb;
+}
+
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
 body {
   font-family: "Marine";
   padding: 0;
@@ -280,6 +372,12 @@ body {
   .section__template__listClient .item__slide {
     height: 80px;
   }
+}
+.section__template__listClient .swiper-slide {
+  filter: grayscale(1) opacity(0.6);
+}
+.section__template__listClient .swiper-slide.swiper-slide-prev, .section__template__listClient .swiper-slide.swiper-slide-next, .section__template__listClient .swiper-slide.swiper-slide-active {
+  filter: grayscale(0) opacity(1);
 }
 .section__template__listClient .swiper-button-prev {
   left: 0;
@@ -418,6 +516,7 @@ body {
   position: relative;
   display: block;
   background: #fff;
+  border-radius: 0 0 65px;
 }
 .section__template__listTestimonials .item__slide--top {
   width: 120px;
@@ -548,6 +647,7 @@ body {
   position: relative;
   width: 100%;
   flex-wrap: wrap;
+  border-radius: 0 0 65px;
 }
 .section__template__listPostGrid .section__template--content .listPostGrid .itemPost:after {
   content: "";
@@ -582,12 +682,13 @@ body {
   text-decoration: none;
   color: #ff5a00;
   font-family: "Marine-Bold";
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   display: block;
 }
 .section__template__listPostGrid .section__template--content .listPostGrid .itemPost__content--title {
-  font-size: 24px;
+  font-size: 23px;
   line-height: 35px;
+  font-family: "Marine-Light";
   height: 105px;
   overflow: hidden;
 }
@@ -602,11 +703,16 @@ body {
 }
 .section__template__listPostGrid .section__template--content .listPostGrid .itemPost__content--readmore {
   color: #fff;
-  font-size: 20px;
+  font-size: 23px;
   text-decoration: none;
+  font-family: "Marine-Light";
   margin-top: 20px;
   display: block;
   line-height: 1.15;
+}
+.section__template__listPostGrid .section__template--content .listPostGrid .itemPost__content--readmore:after {
+  content: "›";
+  padding-left: 7px;
 }
 .section__template__listPostGrid .section__template--content .listPostGrid .itemPost__content--readmore:hover {
   color: #ff5a00;
@@ -628,6 +734,7 @@ body {
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
   max-width: 100%;
+  max-height: 70%;
 }
 .section__template__listPostGrid .section__template--content .listPostGrid .itemPost:first-child .itemPost__content {
   -webkit-box-flex: 0;
@@ -640,6 +747,18 @@ body {
   width: 100%;
   height: auto;
   background: #4a5c66;
+  border-radius: 0 0 65px;
+}
+.section__template__listPostGrid .section__template--content .listPostGrid .itemPost:first-child .itemPost__content:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 0 solid transparent;
+  border-bottom: 50px solid #f9f9f9;
 }
 @media (max-width: 1024px) {
   .section__template__listPostGrid .section__template--content .listPostGrid .itemPost:first-child .itemPost__pic {

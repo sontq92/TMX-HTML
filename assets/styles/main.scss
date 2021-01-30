@@ -81,7 +81,7 @@ $subTitleColor: #ff5a00;
 
   //Responsive
   @include tablet {
-    height: 250px;
+    height: 300px;
   }
   @include mobile {
     height: 250px;
@@ -175,6 +175,112 @@ $subTitleColor: #ff5a00;
   text-align: center;
 }
 
+.section__select__box {
+  position: relative;
+  z-index: 999;
+  display: block;
+  max-width: 260px;
+  width: 100%;
+  text-align: left;
+  height: 70px;
+  color: $titleColor;
+  @include mobile{
+    max-width: 100%;
+  }
+  &__current {
+    position: relative;
+    //box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      & + .section__select__box__list {
+        opacity: 1;
+        animation-name: none;
+
+        .section__select__box__option {
+          cursor: pointer;
+        }
+      }
+
+      .section__select__box__icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 15px;
+    opacity: 0.8;
+    transition: 0.2s ease;
+  }
+
+  &__value {
+    display: flex;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .section__select__box__input--text {
+      display: block;
+    }
+  }
+
+  &__input--text {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 0 15px;
+    background-color: #fff;
+    height: 70px;
+    line-height: 70px;
+  }
+
+  &__list {
+    position: absolute;
+    //top: 70px;
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    animation-name: HideList;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: step-start;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+  }
+
+  &__option {
+    display: block;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid rgba(74,92,102,0.3);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: #546c84;
+      background-color: #fbfbfb;
+    }
+  }
+}
+
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
 body {
   font-family: "Marine";
   padding: 0;
@@ -249,6 +355,12 @@ body {
         }
       }
 
+      .swiper-slide{
+        filter: grayscale(1) opacity(0.6);
+        &.swiper-slide-prev,  &.swiper-slide-next,  &.swiper-slide-active {
+          filter: grayscale(0) opacity(1);
+        }
+      }
       .swiper-button-prev {
         left: 0;
       }
@@ -454,6 +566,7 @@ body {
         position: relative;
         display: block;
         background: #fff;
+        border-radius: 0 0 65px;
 
         &--top {
           width: 120px;
@@ -591,7 +704,8 @@ body {
             width: 100%;
             @extend %d-flex;
             flex-wrap: wrap;
-
+            border-radius: 0 0 65px;
+            //overflow: hidden;
             &:after {
               content: '';
               position: absolute;
@@ -602,6 +716,7 @@ body {
               border-left: 50px solid transparent;
               border-right: 0 solid transparent;
               border-bottom: 50px solid #f9f9f9;
+
             }
 
             &__pic {
@@ -627,14 +742,14 @@ body {
                 text-decoration: none;
                 color: $subTitleColor;
                 font-family: "Marine-Bold";
-                margin-bottom: 20px;
+                margin-bottom: 32px;
                 display: block;
               }
 
               &--title {
-                font-size: 24px;
+                font-size: 23px;
                 line-height: 35px;
-
+                font-family: "Marine-Light";
 
                 span {
                   font-family: "Marine-Bold";
@@ -651,11 +766,16 @@ body {
 
               &--readmore {
                 color: #fff;
-                font-size: 20px;
+                font-size: 23px;
                 text-decoration: none;
+                font-family: "Marine-Light";
                 margin-top: 20px;
                 display: block;
                 line-height: 1.15;
+                &:after{
+                  content: '›';
+                  padding-left: 7px;
+                }
 
                 &:hover {
                   color: $subTitleColor;
@@ -676,6 +796,7 @@ body {
             &:first-child {
               .itemPost__pic {
                 @include flex-width(100%);
+                max-height: 70%;
               }
 
               .itemPost__content {
@@ -686,6 +807,19 @@ body {
                 width: 100%;
                 height: auto;
                 background: $titleColor;
+                border-radius: 0 0 65px;
+                &:after {
+                  content: '';
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
+                  width: 0;
+                  height: 0;
+                  border-left: 50px solid transparent;
+                  border-right: 0 solid transparent;
+                  border-bottom: 50px solid #f9f9f9;
+
+                }
               }
             }
 
