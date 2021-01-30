@@ -5,6 +5,7 @@
 //End Import Style
 $titleColor: #4a5c66;
 $subTitleColor: #ff5a00;
+
 %itemDescription {
 
   position: absolute;
@@ -125,46 +126,100 @@ $subTitleColor: #ff5a00;
     margin-right: 15px;
   }
 
-  select {
+  .selectCustom-hidden {
+    display: none;
+    visibility: hidden;
+    padding-right: 10px;
+  }
+
+  .selectCustom {
+    text-align: left;
     cursor: pointer;
-    background: #fff url("../images/icons/iconDown.png") no-repeat calc(100% - 20px) center;
-    background-size: 15px auto;
-    height: 70px;
-    border: none;
-    min-width: 262px;
+    display: flex;
+    position: relative;
     font-size: 23px;
-    font-family: "Marine";
     color: $titleColor;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: '';
-    padding: 0 25px;
+    width: 100%;
+    max-width: 260px;
+    height: 70px;
+    @include mobile {
+      //font-size: 16px;
+      //width: 100%;
+      max-width: 100%;
+    }
+  }
 
-    &:focus {
-      outline: none;
+  .selectCustom-styled {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    padding: 0 15px;
+    @extend %transition;
+
+    &:after {
+      content: "";
+      width: 15px;
+      height: 10px;
+      background: url("../images/icons/iconDown.png") no-repeat;
+      background-size: 15px auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-5px);
+      right: 15px;
     }
 
-    &::-ms-expand {
-      display: none;
-    }
 
-    //@include mobile {
-    //  font-size: 14px;
-    //  height: 50px;
-    //  min-width: 150px;
-    //  padding: 0 10px;
-    //  background-size: 10px auto;
-    //}
+    &:active, &.active {
+      background-color: #fff;
+
+      &:after {
+        transform: rotate(180deg) translateY(-5%);
+        transform-origin: 7px 0;
+      }
+    }
+  }
+
+  .selectCustom-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #fff;
+
+    li {
+      margin: 0;
+      padding: 12px 0;
+      text-indent: 15px;
+      border-top: 1px solid darken(#fff, 10);
+      @include transition(all 0.15s ease-in);
+
+      &:hover {
+        background: #f7f7f7;
+      }
+
+      &[rel="hide"] {
+        display: none;
+      }
+    }
   }
 
   @include mobile {
     //font-size: 16px;
-    span{
+    span {
       width: 100%;
       margin-bottom: 15px;
     }
-    select{
+    select {
       width: 100%;
     }
   }
@@ -175,111 +230,6 @@ $subTitleColor: #ff5a00;
   text-align: center;
 }
 
-.section__select__box {
-  position: relative;
-  z-index: 999;
-  display: block;
-  max-width: 260px;
-  width: 100%;
-  text-align: left;
-  height: 70px;
-  color: $titleColor;
-  @include mobile{
-    max-width: 100%;
-  }
-  &__current {
-    position: relative;
-    //box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
-    cursor: pointer;
-    outline: none;
-
-    &:focus {
-      & + .section__select__box__list {
-        opacity: 1;
-        animation-name: none;
-
-        .section__select__box__option {
-          cursor: pointer;
-        }
-      }
-
-      .section__select__box__icon {
-        transform: translateY(-50%) rotate(180deg);
-      }
-    }
-  }
-
-  &__icon {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    width: 15px;
-    opacity: 0.8;
-    transition: 0.2s ease;
-  }
-
-  &__value {
-    display: flex;
-  }
-
-  &__input {
-    display: none;
-
-    &:checked + .section__select__box__input--text {
-      display: block;
-    }
-  }
-
-  &__input--text {
-    display: none;
-    width: 100%;
-    margin: 0;
-    padding: 0 15px;
-    background-color: #fff;
-    height: 70px;
-    line-height: 70px;
-  }
-
-  &__list {
-    position: absolute;
-    //top: 70px;
-    margin: 0;
-    width: 100%;
-    padding: 0;
-    list-style: none;
-    opacity: 0;
-    animation-name: HideList;
-    animation-duration: 0.5s;
-    animation-delay: 0.5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: step-start;
-    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
-  }
-
-  &__option {
-    display: block;
-    padding: 15px;
-    background-color: #fff;
-    border-top: 1px solid rgba(74,92,102,0.3);
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-      color: #546c84;
-      background-color: #fbfbfb;
-    }
-  }
-}
-
-@keyframes HideList {
-  from {
-    transform: scaleY(1);
-  }
-  to {
-    transform: scaleY(0);
-  }
-}
 
 body {
   font-family: "Marine";
@@ -355,12 +305,14 @@ body {
         }
       }
 
-      .swiper-slide{
+      .swiper-slide {
         filter: grayscale(1) opacity(0.6);
-        &.swiper-slide-prev,  &.swiper-slide-next,  &.swiper-slide-active {
+
+        &.swiper-slide-prev, &.swiper-slide-next, &.swiper-slide-active {
           filter: grayscale(0) opacity(1);
         }
       }
+
       .swiper-button-prev {
         left: 0;
       }
@@ -772,7 +724,8 @@ body {
                 margin-top: 20px;
                 display: block;
                 line-height: 1.15;
-                &:after{
+
+                &:after {
                   content: '›';
                   padding-left: 7px;
                 }
@@ -808,6 +761,7 @@ body {
                 height: auto;
                 background: $titleColor;
                 border-radius: 0 0 65px;
+
                 &:after {
                   content: '';
                   position: absolute;

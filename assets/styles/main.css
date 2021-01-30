@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*--------Mixin--------*/
-.section__template__listPersonGrid .item__grid--description, .section__template__listPersonSlide .item__slide--description {
+.section__template__listPostGrid .section__template--subHeader .selectCustom-styled, .section__template__listPersonGrid .section__template--subHeader .selectCustom-styled, .section__template__listPersonGrid .item__grid--description, .section__template__listPersonSlide .item__slide--description {
   transition: all 0.3s !important;
   -o-transition: all 0.3s !important;
   -ms-transition: all 0.3s !important;
@@ -169,26 +169,83 @@
   font-family: "Marine-Bold";
   margin-right: 15px;
 }
-.section__template__listPostGrid .section__template--subHeader select, .section__template__listPersonGrid .section__template--subHeader select {
+.section__template__listPostGrid .section__template--subHeader .selectCustom-hidden, .section__template__listPersonGrid .section__template--subHeader .selectCustom-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+.section__template__listPostGrid .section__template--subHeader .selectCustom, .section__template__listPersonGrid .section__template--subHeader .selectCustom {
+  text-align: left;
   cursor: pointer;
-  background: #fff url("../images/icons/iconDown.png") no-repeat calc(100% - 20px) center;
-  background-size: 15px auto;
-  height: 70px;
-  border: none;
-  min-width: 262px;
+  display: flex;
+  position: relative;
   font-size: 23px;
-  font-family: "Marine";
   color: #4a5c66;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: "";
-  padding: 0 25px;
+  width: 100%;
+  max-width: 260px;
+  height: 70px;
 }
-.section__template__listPostGrid .section__template--subHeader select:focus, .section__template__listPersonGrid .section__template--subHeader select:focus {
-  outline: none;
+@media (max-width: 480px) {
+  .section__template__listPostGrid .section__template--subHeader .selectCustom, .section__template__listPersonGrid .section__template--subHeader .selectCustom {
+    max-width: 100%;
+  }
 }
-.section__template__listPostGrid .section__template--subHeader select::-ms-expand, .section__template__listPersonGrid .section__template--subHeader select::-ms-expand {
+.section__template__listPostGrid .section__template--subHeader .selectCustom-styled, .section__template__listPersonGrid .section__template--subHeader .selectCustom-styled {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  padding: 0 15px;
+}
+.section__template__listPostGrid .section__template--subHeader .selectCustom-styled:after, .section__template__listPersonGrid .section__template--subHeader .selectCustom-styled:after {
+  content: "";
+  width: 15px;
+  height: 10px;
+  background: url("../images/icons/iconDown.png") no-repeat;
+  background-size: 15px auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-5px);
+  right: 15px;
+}
+.section__template__listPostGrid .section__template--subHeader .selectCustom-styled:active, .section__template__listPersonGrid .section__template--subHeader .selectCustom-styled:active, .section__template__listPostGrid .section__template--subHeader .selectCustom-styled.active, .section__template__listPersonGrid .section__template--subHeader .selectCustom-styled.active {
+  background-color: #fff;
+}
+.section__template__listPostGrid .section__template--subHeader .selectCustom-styled:active:after, .section__template__listPersonGrid .section__template--subHeader .selectCustom-styled:active:after, .section__template__listPostGrid .section__template--subHeader .selectCustom-styled.active:after, .section__template__listPersonGrid .section__template--subHeader .selectCustom-styled.active:after {
+  transform: rotate(180deg) translateY(-5%);
+  transform-origin: 7px 0;
+}
+.section__template__listPostGrid .section__template--subHeader .selectCustom-options, .section__template__listPersonGrid .section__template--subHeader .selectCustom-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+}
+.section__template__listPostGrid .section__template--subHeader .selectCustom-options li, .section__template__listPersonGrid .section__template--subHeader .selectCustom-options li {
+  margin: 0;
+  padding: 12px 0;
+  text-indent: 15px;
+  border-top: 1px solid #e6e6e6;
+  transition: all all 0.15s ease-in !important;
+  -o-transition: all all 0.15s ease-in !important;
+  -ms-transition: all all 0.15s ease-in !important;
+  -webkit-transition: all all 0.15s ease-in !important;
+  -moz-transition: all all 0.15s ease-in !important;
+}
+.section__template__listPostGrid .section__template--subHeader .selectCustom-options li:hover, .section__template__listPersonGrid .section__template--subHeader .selectCustom-options li:hover {
+  background: #f7f7f7;
+}
+.section__template__listPostGrid .section__template--subHeader .selectCustom-options li[rel=hide], .section__template__listPersonGrid .section__template--subHeader .selectCustom-options li[rel=hide] {
   display: none;
 }
 @media (max-width: 480px) {
@@ -206,97 +263,6 @@
   text-align: center;
 }
 
-.section__select__box {
-  position: relative;
-  z-index: 999;
-  display: block;
-  max-width: 260px;
-  width: 100%;
-  text-align: left;
-  height: 70px;
-  color: #4a5c66;
-}
-@media (max-width: 480px) {
-  .section__select__box {
-    max-width: 100%;
-  }
-}
-.section__select__box__current {
-  position: relative;
-  cursor: pointer;
-  outline: none;
-}
-.section__select__box__current:focus + .section__select__box__list {
-  opacity: 1;
-  animation-name: none;
-}
-.section__select__box__current:focus + .section__select__box__list .section__select__box__option {
-  cursor: pointer;
-}
-.section__select__box__current:focus .section__select__box__icon {
-  transform: translateY(-50%) rotate(180deg);
-}
-.section__select__box__icon {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  width: 15px;
-  opacity: 0.8;
-  transition: 0.2s ease;
-}
-.section__select__box__value {
-  display: flex;
-}
-.section__select__box__input {
-  display: none;
-}
-.section__select__box__input:checked + .section__select__box__input--text {
-  display: block;
-}
-.section__select__box__input--text {
-  display: none;
-  width: 100%;
-  margin: 0;
-  padding: 0 15px;
-  background-color: #fff;
-  height: 70px;
-  line-height: 70px;
-}
-.section__select__box__list {
-  position: absolute;
-  margin: 0;
-  width: 100%;
-  padding: 0;
-  list-style: none;
-  opacity: 0;
-  animation-name: HideList;
-  animation-duration: 0.5s;
-  animation-delay: 0.5s;
-  animation-fill-mode: forwards;
-  animation-timing-function: step-start;
-  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
-}
-.section__select__box__option {
-  display: block;
-  padding: 15px;
-  background-color: #fff;
-  border-top: 1px solid rgba(74, 92, 102, 0.3);
-  cursor: pointer;
-}
-.section__select__box__option:hover, .section__select__box__option:focus {
-  color: #546c84;
-  background-color: #fbfbfb;
-}
-
-@keyframes HideList {
-  from {
-    transform: scaleY(1);
-  }
-  to {
-    transform: scaleY(0);
-  }
-}
 body {
   font-family: "Marine";
   padding: 0;
