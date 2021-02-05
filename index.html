@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/plugins/swiper/swiper.min.css">
-    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="stylesheet" href="assets/styles/main.min.css">
     <title>Template TMX</title>
 </head>
 <body>
@@ -734,7 +734,7 @@
 <section class="section__template section__template__listPostGrid">
     <div class="section__template--subHeader">
         <span>Filter by specialty</span>
-        <select name=""  class="section__template--subHeader__slc">
+        <select name="" class="section__template--subHeader__slc">
             <option value="All">View All</option>
             <option value="Adviser">Adviser</option>
             <option value="Partner">Partner</option>
@@ -755,7 +755,7 @@
                         <span>Market Commentary –</span> “Brief deferment, not cancellation”. recovery underway.
                     </div>
                     <a href="#" class="itemPost__content--readmore">
-                        Readmore 
+                        Readmore
                     </a>
                 </div>
             </div>
@@ -771,7 +771,7 @@
                         <span>Market Commentary –</span> “Brief deferment, not cancellation”. recovery underway.
                     </div>
                     <a href="#" class="itemPost__content--readmore">
-                        Readmore 
+                        Readmore
                     </a>
                 </div>
             </div>
@@ -787,7 +787,7 @@
                         <span>Market Commentary –</span> “Brief deferment, not cancellation”. recovery underway.
                     </div>
                     <a href="#" class="itemPost__content--readmore">
-                        Readmore 
+                        Readmore
                     </a>
                 </div>
             </div>
@@ -803,7 +803,7 @@
                         <span>Market Commentary –</span> “Brief deferment, not cancellation”. recovery underway.
                     </div>
                     <a href="#" class="itemPost__content--readmore">
-                        Readmore 
+                        Readmore
                     </a>
                 </div>
             </div>
@@ -819,7 +819,7 @@
                         <span>Market Commentary –</span> “Brief deferment, not cancellation”. recovery underway.
                     </div>
                     <a href="#" class="itemPost__content--readmore">
-                        Readmore 
+                        Readmore
                     </a>
                 </div>
             </div>
@@ -835,7 +835,7 @@
                         <span> New normal – </span>Traditional retailers prepare to downsize.
                     </div>
                     <a href="#" class="itemPost__content--readmore">
-                        Readmore 
+                        Readmore
                     </a>
                 </div>
             </div>
@@ -851,7 +851,7 @@
                         <span>Market Commentary –</span> “Brief deferment, not cancellation”. recovery underway.
                     </div>
                     <a href="#" class="itemPost__content--readmore">
-                        Readmore 
+                        Readmore
                     </a>
                 </div>
             </div>
@@ -883,7 +883,7 @@
                         <span> New normal – </span>Traditional retailers prepare to downsize.
                     </div>
                     <a href="#" class="itemPost__content--readmore">
-                        Readmore 
+                        Readmore
                     </a>
                 </div>
             </div>
@@ -891,7 +891,6 @@
         </div>
     </div>
 </section>
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -960,8 +959,8 @@
     },
   });
 
-//  Select Dropdown
-  $('select').each(function(){
+  //  Select Dropdown
+  $('select').each(function () {
     var $this = $(this), numberOfOptions = $(this).children('option').length;
 
     $this.addClass('selectCustom-hidden');
@@ -984,15 +983,15 @@
 
     var $listItems = $list.children('li');
 
-    $styledSelect.click(function(e) {
+    $styledSelect.click(function (e) {
       e.stopPropagation();
-      $('div.selectCustom-styled.active').not(this).each(function(){
+      $('div.selectCustom-styled.active').not(this).each(function () {
         $(this).removeClass('active').next('ul.selectCustom-options').hide();
       });
       $(this).toggleClass('active').next('ul.selectCustom-options').toggle();
     });
 
-    $listItems.click(function(e) {
+    $listItems.click(function (e) {
       e.stopPropagation();
       $styledSelect.text($(this).text()).removeClass('active');
       $this.val($(this).attr('rel'));
@@ -1000,7 +999,7 @@
       //console.log($this.val());
     });
 
-    $(document).click(function() {
+    $(document).click(function () {
       $styledSelect.removeClass('active');
       $list.hide();
     });
